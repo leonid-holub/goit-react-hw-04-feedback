@@ -1,0 +1,14 @@
+.Button {
+  width: 75px;
+  margin-right: 10px;
+  text-transform: capitalize;
+  font-family: inherit;
+  background-color: #ccffff;
+  border-radius: 3px;
+  border-width: 1px;
+  cursor: pointer;
+}
+
+.Button:active {
+  background-color: #ccccff;
+}
