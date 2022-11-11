@@ -1,4 +1,3 @@
-import React from 'react';
 import css from '../Section/Section';
 
 const Notification = ({ message }) => {

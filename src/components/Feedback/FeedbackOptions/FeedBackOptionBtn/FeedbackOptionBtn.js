@@ -1,4 +1,3 @@
-import React from 'react';
 import css from './FeedbackOptionBtn.module.css';
 
 const BtnCreate = ({ btnName, onLeaveFeedback }) => {

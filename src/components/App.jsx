@@ -1,52 +1,51 @@
-import React from 'react';
+import { useState } from 'react';
 import Feedback from './Feedback/Feedback';
 
-class App extends React.Component {
-  state = {
-    good: 0,
-    neutral: 0,
-    bad: 0,
-  };
+export default function App() {
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
+  const [isShown, setShown] = useState(false);
 
-  addFeedback = e => {
+  const state = { good, neutral, bad };
+
+  const addFeedback = e => {
     const { textContent } = e.target;
-    this.setState(() => ({
-      [textContent]: this.state[textContent] + 1,
-    }));
-    this.isShown = true;
+    if (textContent === 'good') {
+      setGood(good + 1);
+    }
+    if (textContent === 'neutral') {
+      setNeutral(neutral + 1);
+    }
+    if (textContent === 'bad') {
+      setBad(bad + 1);
+    }
+
+    setShown(true);
   };
 
-  countTotalFeedback = () => {
-    return this.state.good + this.state.neutral + this.state.bad;
+  const countTotalFeedback = () => {
+    return good + neutral + bad;
   };
 
-  countPositiveFeedbackPercentage = () => {
+  const countPositiveFeedbackPercentage = () => {
     return (
-      this.state.good + this.state.neutral + this.state.bad &&
-      (this.state.good /
-        (this.state.good + this.state.neutral + this.state.bad)) *
-        100
+      good + neutral + bad && (good / (good + neutral + bad)) * 100
     ).toFixed(0);
   };
 
-  isShown = false;
-
-  render() {
-    return (
-      <>
-        <Feedback
-          options={this.state}
-          onLeaveFeedback={this.addFeedback}
-          good={this.state.good}
-          neutral={this.state.neutral}
-          bad={this.state.bad}
-          total={this.countTotalFeedback}
-          positivePercentage={this.countPositiveFeedbackPercentage}
-          isShown={this.isShown}
-        />
-      </>
-    );
-  }
+  return (
+    <>
+      <Feedback
+        options={state}
+        onLeaveFeedback={addFeedback}
+        good={good}
+        neutral={neutral}
+        bad={bad}
+        total={countTotalFeedback}
+        positivePercentage={countPositiveFeedbackPercentage}
+        isShown={isShown}
+      />
+    </>
+  );
 }
-
-export default App;

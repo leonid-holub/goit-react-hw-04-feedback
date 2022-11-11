@@ -1,4 +1,3 @@
-import React from 'react';
 import BtnCreate from './FeedBackOptionBtn/FeedbackOptionBtn';
 
 const FeedbackOptions = ({ options, onLeaveFeedback }) =>
